@@ -1,0 +1,27 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "resources": [
+    {
+      "apiVersion": "2021-03-01",
+      "type": "Microsoft.ContainerService/managedClusters",
+      "name": "Head_of_state",
+      "location": "East US",
+      "properties": {
+        "kubernetesVersion": "1.21.2", 
+        "nodeResourceGroup": "Res_01",
+        "agentPoolProfiles": [
+          {
+            "name": "agentpool",
+            "count": 3, 
+            "vmSize": "Standard_DS2_v2" 
+          }
+        ],
+        "servicePrincipalProfile": {
+          "clientId": "Admin",
+          "secret": "Admin 123"
+        }
+      }
+    }
+  ]
+}
