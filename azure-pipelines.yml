@@ -19,16 +19,22 @@ stages:
     displayName: Build
     pool:
       vmImage: ubuntu-latest
-    steps:
-    - task: Docker@2
-      displayName: Build an image
-      inputs:
-        command: build
-        dockerfile: '$(Build.SourcesDirectory)/Dockerfile.dockerfile'
-        tags: |
-          $(tag)
-    container:
-        name: headofstates/iaac-web:latest
-        image: hos01.azurecr.io/headofstates/iaac-web:latest
-        imagepullpolicy: Always 
+- stage: Deploy
+  displayName: headofstates/iaac-web
+  dependsOn: Build 
+  jobs:
+    - job: Deploy
+      displayName: Deploy
+      pool:
+       vmImage: ubuntu-latest
+      steps: 
+      - task: Docker@2
+        displayName: Push to ACR
+        inputs:
+           command: push
+           containerRegistry: hos01.azurecr.io
+           repository: hos01.azurecr.io
+           tags: |
+             $(tag)
         
+   
