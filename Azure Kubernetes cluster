@@ -16,7 +16,11 @@
             "count": 3, 
             "vmSize": "Standard_DS2_v2" 
           }
-        ]
+        ],
+        "servicePrincipalProfile": {
+          "clientId": "215b7ce2-5263-4593-a622-da030405d151",
+           "secret": "Admin123"
+        }
       }
     }
   ]
