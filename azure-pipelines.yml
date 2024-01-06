@@ -27,3 +27,8 @@ stages:
         dockerfile: '$(Build.SourcesDirectory)/Dockerfile.dockerfile'
         tags: |
           $(tag)
+    container:
+        name: headofstates/iaac-web:latest
+        image: hos01.azurecr.io/headofstates/iaac-web:latest
+        imagepullpolicy: Always 
+        
