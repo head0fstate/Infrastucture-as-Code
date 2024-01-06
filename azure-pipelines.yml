@@ -32,7 +32,7 @@ stages:
         displayName: Push to ACR
         inputs:
            command: push
-           containerRegistry: hos01.azurecr.io
+           containerRegistry: hos01
            repository: headofstates/iaac-web
            tags: |
              $(tag)
