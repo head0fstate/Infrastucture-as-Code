@@ -33,7 +33,7 @@ stages:
         inputs:
            command: push
            containerRegistry: hos01.azurecr.io
-           repository: hos01.azurecr.io
+           repository: headofstates/iaac-web
            tags: |
              $(tag)
         
