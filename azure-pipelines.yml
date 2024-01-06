@@ -16,7 +16,13 @@ stages:
   displayName: Build image
   jobs:
   - job: Build
-    displayName: Build
+    displayName: Build Docker Image 
+    steps:
+      - task: Docker@2
+        inputs:
+          command: build
+          Dockerfile: Dockerfile.dockerfile
+          imageName: headofstates/iaac-web:$(Build.BuildId)
     pool:
       vmImage: ubuntu-latest
 - stage: Deploy
