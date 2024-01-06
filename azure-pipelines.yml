@@ -1,0 +1,47 @@
+# Docker
+# Build a Docker image
+# https://docs.microsoft.com/azure/devops/pipelines/languages/docker
+
+trigger:
+- head0fstate-patch-1
+
+resources:
+- repo: self
+
+variables:
+  tag: '$(Build.BuildId)'
+
+stages:
+- stage: Build
+  displayName: Build image
+  jobs:
+  - job: Build
+    displayName: Build Docker Image 
+    steps:
+      - task: Docker@2
+        inputs:
+          command: build
+          Dockerfile: Dockerfile.dockerfile
+          imageName: headofstates/iaac-web:$(Build.BuildId)
+          buildContext: . 
+    pool:
+      vmImage: ubuntu-latest
+- stage: Deploy
+  displayName: headofstates/iaac-web
+  dependsOn: Build 
+  jobs:
+    - job: Deploy
+      displayName: Deploy
+      pool:
+       vmImage: ubuntu-latest
+      steps: 
+      - task: Docker@2
+        displayName: Push to ACR
+        inputs:
+           command: push
+           containerRegistry: Assest3-ServiceConnection
+           repository: headofstates/iaac-web
+           tags: |
+             $(tag)
+        
+   
