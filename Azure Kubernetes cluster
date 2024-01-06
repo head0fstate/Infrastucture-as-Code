@@ -5,7 +5,7 @@
     {
       "apiVersion": "2021-03-01",
       "type": "Microsoft.ContainerService/managedClusters",
-      "name": "Head_of_state",
+      "name": "headofstate",
       "location": "East US",
       "properties": {
         "kubernetesVersion": "1.21.2", 
@@ -16,11 +16,7 @@
             "count": 3, 
             "vmSize": "Standard_DS2_v2" 
           }
-        ],
-        "servicePrincipalProfile": {
-          "clientId": "Admin",
-          "secret": "Admin 123"
-        }
+        ]
       }
     }
   ]
