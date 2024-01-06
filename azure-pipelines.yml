@@ -23,6 +23,7 @@ stages:
           command: build
           Dockerfile: Dockerfile.dockerfile
           imageName: headofstates/iaac-web:$(Build.BuildId)
+          buildContext: . 
     pool:
       vmImage: ubuntu-latest
 - stage: Deploy
